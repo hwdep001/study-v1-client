@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+
+        <ion-buttons end (click)="settingQue()">
+            <button ion-button icon-only>
+                <ion-icon name="settings"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end (click)="shuffleQue()">
+            <button ion-button icon-only>
+                <ion-icon name="refresh"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="icontent">
+
+    <div class="icontent-middle" *ngFor="let word of words; let i = index">
+        <ion-card class="icard" text-wrap [ngClass]="'icard-border' + word.levelId">
+            <!-- ///////////////////////////////////////////////////////////////////// -->
+            <div *ngIf="word.flag1 == false" (click)="word.flag1 = true">
+                <ion-row class="icard-que">
+                    <ion-col align-self-center text-center>
+                        <ion-label class="que-cc">{{word.col01}}</ion-label>
+                        <ng-container *ngIf="queFlag == true">
+                            <ion-label class="que-me">{{word.col02}}</ion-label>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <!-- ///////////////////////////////////////////////////////////////////// -->
+            <div *ngIf="word.flag1 == true" (click)="word.flag1 = false">
+                <ion-row class="icard-header">
+                    <ion-col align-self-center text-center>
+                        {{word.col01}} ({{word.col02}})
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="icard-ccme">
+                    <ion-card-content align-self-center>
+                        <ion-label>
+                            {{word.col03}}
+                            <ng-container *ngIf="word.col04 != ''">, </ng-container>{{word.col04}}
+                            <ng-container *ngIf="word.col05 != ''">, </ng-container>{{word.col05}}
+                            <ng-container *ngIf="word.col06 != ''">, </ng-container>{{word.col06}}
+                            <ng-container *ngIf="word.col07 != ''">, </ng-container>{{word.col07}}
+                            <ng-container *ngIf="word.col08 != ''">, </ng-container>{{word.col08}}
+                        </ion-label>
+                    </ion-card-content>
+                </ion-row>
+
+                <ion-row class="icard-me">
+                    <ion-card-content align-self-center>
+                        <ion-label>{{word.col09}}</ion-label>
+                    </ion-card-content>
+                </ion-row>
+
+                <ion-row class="icard-ex">
+                    <ion-card-content align-self-center>
+                        <ng-container *ngIf="word.col10 != ''">
+                            <ion-label>
+                                <img src="assets/imgs/icon_synonym.png" />{{word.col10}}</ion-label>
+                        </ng-container>
+                        <ng-container *ngIf="word.col11 != ''">
+                            <ion-label>
+                                <img src="assets/imgs/icon_antonym.png" />{{word.col11}}</ion-label>
+                        </ng-container>
+                    </ion-card-content>
+                </ion-row>
+            </div>
+            <!-- ///////////////////////////////////////////////////////////////////// -->
+            <ion-row class="icard-footer">
+                <ion-col col-20 class="footer-up" align-self-center text-center (click)="clickThumbs(word, 1)">
+                    <button ion-button color="gray" clear small icon-start>
+                        <ion-icon name='thumbs-up'></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col col-60 class="footer-desc-col" align-self-center text-center>
+                    <ion-note class="footer-desc-note">
+                        <!-- <ion-icon name='warning' class="cursor" (click)="requestModification(word)" >
+            </ion-icon> &nbsp; -->
+                        {{word.lecName}} - {{word.num}}
+                    </ion-note>
+                </ion-col>
+                <ion-col col-20 class="footer-down" align-self-center text-center (click)="clickThumbs(word, -1)">
+                    <button ion-button color="gray" clear small icon-start>
+                        <ion-icon name='thumbs-down'></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+
+</ion-content>

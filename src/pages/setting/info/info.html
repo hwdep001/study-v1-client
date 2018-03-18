@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>내 정보</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="icontent" scroll=false>
+  <ion-list class="ilist">
+    <ion-list-header class="iheader" no-lines>
+      Info
+    </ion-list-header>
+    <ion-item class="iitem">UID
+      <ion-note class="inote" item-end>
+        {{user.uid}}
+      </ion-note>
+    </ion-item>
+    <ion-item class="iitem">Email
+      <ion-note class="inote" item-end>
+        {{user.email}}
+      </ion-note>
+    </ion-item>
+
+    <ion-list-header class="iheader">
+      Config
+    </ion-list-header>
+    <ion-item class="iitem cursor" (click)="signOut()">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-note class="config">로그아웃</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

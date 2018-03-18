@@ -1,0 +1,85 @@
+[sp, sl, lw]
+01: question
+02: choice1 
+03: choice2  
+04: answer 
+05: answer_num
+
+
+[kw]
+01: meaning1
+02: meaning2  
+03: meaning3  
+04: meaning4  
+05: meaning5  
+06: meaning6  
+07: meaning7  
+08: word
+09: example1  
+10: example2  
+11: example3  
+12: example4  
+13: example5  
+14: example6 
+
+
+[cc]
+01: word 
+02: content  
+03: content1  
+04: content2  
+05: content3  
+06: content4  
+07: meaning1 
+08: meaning2  
+09: meaning3  
+10: meaning4  
+11: example1  
+12: example2  
+13: example3  
+14: example4  
+15: synonym   
+16: antonym  
+
+
+[c4]
+01: chengyu 
+02: content 
+03: content1
+04: content2
+05: content3
+06: content4
+07: content5
+08: content6
+09: description
+10: description_synonym
+11: description_antonym
+
+
+[ew]
+01: word
+02: meaning_type1
+03: meaning_value1
+04: meaning_type2
+05: meaning_value2
+06: example_phrase
+07: example_meaning
+
+
+
+col01
+col02
+col03
+col04
+col05
+col06
+col07
+col08
+col09
+col10
+col11
+col12
+col13
+col14
+col15
+col16

@@ -1,0 +1,24 @@
+page-wordMng {
+    .icontent {
+
+        .scroll-content {
+            background-color: map-get($colors, content-bg2);
+        }
+
+        .itop {
+            background-color: map-get($colors, itop);
+        }
+
+        .ilist {
+            margin-bottom: 0px;
+
+            .iheader {
+                background-color: map-get($colors, content-bg2);
+            }
+
+            .iitem {
+
+            }
+        }
+    }
+}

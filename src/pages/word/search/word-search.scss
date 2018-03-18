@@ -1,0 +1,27 @@
+page-wordSearch {
+    .icontent {
+
+        .ilist {
+
+            .iheader {
+
+                ion-note {
+                    color: map-get($colors, list-header);
+                }
+            }
+            
+            .ilist-item {
+                background-color: white;
+            }
+
+            .cb-all {
+                max-height: 44px;
+
+                ion-checkbox {
+                    padding-top: 14px;
+                    padding-bottom: 14px;
+                }
+            }
+        }
+    }
+}

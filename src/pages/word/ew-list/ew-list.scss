@@ -1,0 +1,103 @@
+page-ewList {
+    
+        .icontent {
+    
+            .icontent-middle {
+                height: 320px;
+                justify-content: center;
+                display: flex!important;
+                align-items: center!important;
+
+                margin-top: 20px;
+                margin-bottom: 20px;
+    
+                .icard {
+                    max-width: 450px;
+                    height: 300px;
+    
+                    border-top: 3px solid;
+                    border-radius: 3px;
+
+                    .icard-que {
+                        height: 250px;
+
+                        ion-col {
+                            padding: 0px;
+                            font-size: 30px;
+                        }
+                    }
+    
+                    .icard-header {
+                        height: 50px;
+                        padding: 10px 16px;
+
+                        border-bottom: 1px solid;
+                        border-color: map-get($colors, icard-boader);
+    
+                        ion-col {
+                            padding: 0px;
+                            font-size: 22px;
+                        }
+                    }
+    
+                    ion-card-content {
+                        padding-top: 20px;
+                    }
+
+                    .icard-body1 {
+                        height: 100px;
+                        
+                        ion-label {
+                            margin: 0px;
+                            font-size: 15px;
+                        }
+                    }
+
+                    .icard-body2 {
+                        height: 100px;
+
+                        ion-label {
+                            margin: 0px;
+                            font-size: 13px;
+                            color: gray;
+                        }
+                    }
+
+                    .icard-footer {
+                        height: 50px;
+                        border-top: 1px solid;
+                        border-color: map-get($colors, icard-boader);
+                        
+                        .footer-up {}
+                        .footer-desc-col {
+                            .footer-desc-note {
+                                color: gray;
+                                ion-icon {
+                                    font-size: 20px;
+                                    color: map-get($colors, warning);
+                                }
+                            }
+                        }
+                        .footer-down{}
+                    }
+                }
+            }
+    
+            .icard-border-2 {
+                border-color: map-get($word-levels, lev-2) !important;
+            }
+            .icard-border-1 {
+                border-color: map-get($word-levels, lev-1) !important;
+            }
+            .icard-border0 {
+                border-color: map-get($word-levels, lev0) !important;
+            }
+            .icard-border1 {
+                border-color: map-get($word-levels, lev1) !important;
+            }
+            .icard-border2 {
+                border-color: map-get($word-levels, lev2) !important;
+            }
+        }
+    }
+    

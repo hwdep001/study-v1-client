@@ -1,0 +1,23 @@
+page-info {
+    .icontent {
+        .ilist {
+            
+            .iheader {
+            }
+
+            .iitem {
+
+                ion-icon {
+                    padding-right: 5px;
+                }
+
+                .inote {
+                }
+
+                .config {
+                    color: map-get($colors, light-green);
+                }
+            }
+        }
+    }
+}

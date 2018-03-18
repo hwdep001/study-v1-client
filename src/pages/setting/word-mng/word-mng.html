@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>단어 관리</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="icontent" scroll=false>
+    <ion-list class="ilist" *ngFor="let rsc of rscs">
+        <ion-list-header class="iheader" no-lines>
+            <ion-label>{{rsc.name}}</ion-label>
+        </ion-list-header>
+        <ion-item class="iitem" *ngFor="let rc of rsc.roleCats">
+            <ion-label>{{rc.name}}</ion-label>
+            <button ion-button item-right color="danger" (click)="resetLevel(rc.id)">
+                Reset
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

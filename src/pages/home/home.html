@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="icontent">
+    <ion-card ion-card class="icard" *ngFor="let wordCount of wordCounts">
+        <ion-card-content>
+            <ion-row (click)="clickSub(wordCount.subId)" class="cursor">
+                <ion-col col-20 class="icard-name">
+                    <ion-label>{{wordCount.subName}}</ion-label>
+                </ion-col>
+                <ion-col col-12 class="icard-lev lev2">
+                    <ion-label>{{wordCount.lev2}}</ion-label>
+                </ion-col>
+                <ion-col col-12 class="icard-lev lev1">
+                    <ion-label>{{wordCount.lev1}}</ion-label>
+                </ion-col>
+                <ion-col col-12 class="icard-lev lev0">
+                    <ion-label>{{wordCount.lev0}}</ion-label>
+                </ion-col>
+                <ion-col col-12 class="icard-lev lev_1">
+                    <ion-label>{{wordCount.lev_1}}</ion-label>
+                </ion-col>
+                <ion-col col-12 class="icard-lev lev_2">
+                    <ion-label>{{wordCount.lev_2}}</ion-label>
+                </ion-col>
+                <ion-col col-20 class="icard-count">
+                    <ion-label>총 {{wordCount.count}} 단어</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
