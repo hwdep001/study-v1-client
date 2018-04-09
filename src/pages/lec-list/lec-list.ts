@@ -5,7 +5,7 @@ import { AuthProvider } from './../../providers/auth-provider';
 import { SubProvider } from './../../providers/sub-provider';
 import { LecProvider } from './../../providers/lec-provider';
 
-import { WordSearch } from './../../models/WordSearch';
+import { WordSearchCondition } from './../../models/WordSearchCondition';
 import { Sub } from './../../models/Sub';
 import { Cat } from './../../models/Cat';
 import { Lec } from './../../models/Lec';
@@ -58,7 +58,7 @@ export class LecListPage {
 
     const params = {
       activeName: this._sub.getActiveName(this.sub.id), 
-      wordSearch: new WordSearch(this.sub, this.cat, lec, lecIds, levIds, count, false, this._auth.uid)
+      wsc: new WordSearchCondition(this.sub, this.cat, lec, lecIds, levIds, count, false, this._auth.uid)
     }
 
     switch(this.sub.id) {

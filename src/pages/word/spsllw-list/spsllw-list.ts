@@ -1,18 +1,19 @@
 import { CommonProvider } from './../../../providers/common-provider';
 import { WordProvider } from './../../../providers/word-provider';
-import { WordSearch } from './../../../models/WordSearch';
+import { WordSearchCondition } from './../../../models/WordSearchCondition';
 import { Word } from './../../../models/Word';
-import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavParams, Content } from 'ionic-angular';
 
 @Component({
     selector: 'page-spsllwList',
     templateUrl: 'spsllw-list.html'
 })
 export class SpsllwListPage {
+    @ViewChild(Content) content: Content;
 
     words: Array<Word>;
-    ws: WordSearch;
+    wsc: WordSearchCondition;
     title: string;
 
     constructor(
@@ -24,17 +25,17 @@ export class SpsllwListPage {
     }
 
     initData(): void {
-        this.ws = this.param.get("wordSearch");
+        this.wsc = this.param.get("wsc");
 
         this.setTitle();
         this.getWords();
     }
 
     setTitle(): void {
-        if (this.ws.randomed) {
-            this.title = this.ws.cat.name;
+        if (this.wsc.randomed) {
+            this.title = this.wsc.cat.name;
         } else {
-            this.title = this.ws.lec.name;
+            this.title = this.wsc.lec.name;
         }
     }
 
@@ -42,7 +43,7 @@ export class SpsllwListPage {
         const loader = this._cmn.getLoader(null, null);
         loader.present();
 
-        this._word.getWordsBySearch(this.ws)
+        this._word.getWordsBySearch(this.wsc)
             .then(words_ => {
                 let ox: Array<string>;
                 for (let i = 0; i < words_.length; i++) {
@@ -82,9 +83,9 @@ export class SpsllwListPage {
 
     //   requestModification(word: Word): void {
     //     const params = {
-    //       activeName: CommonUtil.getActiveName(this.ws.sub.id), 
-    //       subId: this.ws.sub.id,
-    //       catId: this.ws.cat.id,
+    //       activeName: CommonUtil.getActiveName(this.wsc.sub.id), 
+    //       subId: this.wsc.sub.id,
+    //       catId: this.wsc.cat.id,
     //       word: word
     //     }
 
@@ -108,6 +109,7 @@ export class SpsllwListPage {
         });
 
         this.words = words_;
+        this.content.scrollToTop();
 
         loader.dismiss();
     }

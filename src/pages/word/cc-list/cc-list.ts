@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavParams, AlertController, Content } from 'ionic-angular';
 
 import { CommonProvider } from './../../../providers/common-provider';
 import { WordProvider } from './../../../providers/word-provider';
 
-import { WordSearch } from './../../../models/WordSearch';
+import { WordSearchCondition } from './../../../models/WordSearchCondition';
 import { Word } from './../../../models/Word';
 
 @Component({
@@ -12,9 +12,10 @@ import { Word } from './../../../models/Word';
     templateUrl: 'cc-list.html'
 })
 export class CcListPage {
+    @ViewChild(Content) content: Content;
 
     words: Array<Word>;
-    ws: WordSearch;
+    wsc: WordSearchCondition;
     title: string;
     queFlag: boolean = false;
 
@@ -28,17 +29,17 @@ export class CcListPage {
     }
 
     initData(): void {
-        this.ws = this.param.get("wordSearch");
+        this.wsc = this.param.get("wsc");
 
         this.setTitle();
         this.getWords();
     }
 
     setTitle(): void {
-        if (this.ws.randomed) {
-            this.title = this.ws.cat.name;
+        if (this.wsc.randomed) {
+            this.title = this.wsc.cat.name;
         } else {
-            this.title = this.ws.lec.name;
+            this.title = this.wsc.lec.name;
         }
     }
 
@@ -46,7 +47,7 @@ export class CcListPage {
         const loader = this._cmn.getLoader(null, null);
         loader.present();
 
-        this._word.getWordsBySearch(this.ws)
+        this._word.getWordsBySearch(this.wsc)
             .then(words_ => {
                 for (let i = 0; i < words_.length; i++) {
                     words_[i].flag1 = false;
@@ -87,21 +88,24 @@ export class CcListPage {
     }
 
     clickThumbs(word: Word, thumbCode: number): void {
-        const level: number = thumbCode + (word.levelId == undefined ? 0 : word.levelId);
+        const preLevel: number = (word.levelId == undefined ? 0 : word.levelId);
+        const level: number = thumbCode + preLevel;
 
         if (level > 2 || level < -2) {
             return;
         } else {
             this._word.updateWordLevel(word.id, level)
-                .then(() => word.levelId = level);
+                .then()
+                .catch(() => word.levelId = preLevel);
+            word.levelId = level;
         }
     }
 
     // requestModification(word: Word): void {
     //     const params = {
-    //         activeName: CommonUtil.getActiveName(this.ws.sub.id),
-    //         subId: this.ws.sub.id,
-    //         catId: this.ws.cat.id,
+    //         activeName: CommonUtil.getActiveName(this.wsc.sub.id),
+    //         subId: this.wsc.sub.id,
+    //         catId: this.wsc.cat.id,
     //         word: word
     //     }
 
@@ -125,6 +129,7 @@ export class CcListPage {
         });
 
         this.words = words_;
+        this.content.scrollToTop();
 
         loader.dismiss();
     }

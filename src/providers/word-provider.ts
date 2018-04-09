@@ -6,7 +6,7 @@ import { environment } from './../environments/environment';
 import { AuthProvider } from './auth-provider';
 
 import { ResponseDate } from './../models/ResponseData';
-import { WordSearch } from './../models/WordSearch';
+import { WordSearchCondition } from './../models/WordSearchCondition';
 import { Word } from './../models/Word';
 import { Level } from './../models/Level';
 
@@ -22,7 +22,7 @@ export class WordProvider {
         this.reqUrl = environment.requestUrl;
     }
 
-    getWordSearchData(catId: number): Promise<Map<string, any>> {
+    getWordSearchCondition(catId: number): Promise<Map<string, any>> {
         return this._auth.getIdToken().then(idToken => {
             return new Promise<Map<string, any>>((resolve, reject) => {
 
@@ -50,11 +50,11 @@ export class WordProvider {
         });
     }
 
-    getWordsBySearch(wordSearch: WordSearch): Promise<Array<Word>> {
+    getWordsBySearch(wsc: WordSearchCondition): Promise<Array<Word>> {
         return this._auth.getIdToken().then(idToken => {
             return new Promise<any>((resolve, reject) => {
 
-                const reqData = wordSearch;
+                const reqData = wsc;
 
                 this.http.post(`${this.reqUrl}/word/search`, reqData, {
                     headers: new HttpHeaders().set('Authorization', idToken)

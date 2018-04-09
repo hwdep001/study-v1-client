@@ -10,7 +10,7 @@ import { Level } from './../../../models/Level';
 import { Sub } from './../../../models/Sub';
 import { Cat } from './../../../models/Cat';
 import { Lec } from './../../../models/Lec';
-import { WordSearch } from './../../../models/WordSearch';
+import { WordSearchCondition } from './../../../models/WordSearchCondition';
 
 import { SpsllwListPage } from './../spsllw-list/spsllw-list';
 import { KwListPage } from './../kw-list/kw-list';
@@ -61,7 +61,7 @@ export class WordSearchPage {
         this.sub = this.param.get("sub");
         this.cat = this.param.get("cat");
         this.getLevs();
-        this.getSearchData()
+        this.getWordSearchCondition()
             .then(() => loader.dismiss())
             .catch(err => {
                 loader.dismiss();
@@ -70,8 +70,8 @@ export class WordSearchPage {
             })
     }
 
-    getSearchData(): Promise<any> {
-        return this._word.getWordSearchData(this.cat.id)
+    getWordSearchCondition(): Promise<any> {
+        return this._word.getWordSearchCondition(this.cat.id)
             .then(dataMap => {
                 this.lecs = dataMap["lecs"];
                 this.initCheckbox(false);
@@ -147,7 +147,7 @@ export class WordSearchPage {
 
         const params = {
             activeName: this._sub.getActiveName(this.sub.id),
-            wordSearch: new WordSearch(this.sub,
+            wsc: new WordSearchCondition(this.sub,
                 this.cat, null, this.selectLecs, this.selectLevs, 
                 this.selectCnt, true, this._auth.uid
             )

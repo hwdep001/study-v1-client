@@ -2,7 +2,7 @@ import { Sub } from './Sub';
 import { Cat } from './Cat';
 import { Lec } from './Lec';
 
-export class WordSearch {
+export class WordSearchCondition {
     sub: Sub;
     cat: Cat;
     lec: Lec;
