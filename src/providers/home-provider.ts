@@ -28,7 +28,7 @@ export class HomeProvider {
                     uid: this._auth.uid
                 }
 
-                this.http.post(`${this.reqUrl}/home/word/count`, reqData, {
+                this.http.post(`${this.reqUrl}/home/word-count`, reqData, {
                     headers: new HttpHeaders().set('Authorization', idToken)
                 }).subscribe(data => {
 

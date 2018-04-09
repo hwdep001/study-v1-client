@@ -22,6 +22,34 @@ export class WordProvider {
         this.reqUrl = environment.requestUrl;
     }
 
+    getWordSearchData(catId: number): Promise<Map<string, any>> {
+        return this._auth.getIdToken().then(idToken => {
+            return new Promise<Map<string, any>>((resolve, reject) => {
+
+                const reqData = {
+                    catId: catId
+                }
+
+                this.http.post(`${this.reqUrl}/word/search-condition`, reqData, {
+                    headers: new HttpHeaders().set('Authorization', idToken)
+                }).subscribe(data => {
+
+                    const resData = data as ResponseDate;
+
+                    if (resData.res) {
+                        resolve(resData.data as Map<string, any>);
+                    } else {
+                        const msg: string = resData.code + ": " + resData.msg;
+                        reject(msg);
+                    }
+
+                }, err => {
+                    reject(err);
+                });
+            });
+        });
+    }
+
     getWordsBySearch(wordSearch: WordSearch): Promise<Array<Word>> {
         return this._auth.getIdToken().then(idToken => {
             return new Promise<any>((resolve, reject) => {
@@ -66,34 +94,6 @@ export class WordProvider {
 
                     if (resData.res) {
                         resolve();
-                    } else {
-                        const msg: string = resData.code + ": " + resData.msg;
-                        reject(msg);
-                    }
-
-                }, err => {
-                    reject(err);
-                });
-            });
-        });
-    }
-
-    getWordSearchData(catId: number): Promise<Map<string, any>> {
-        return this._auth.getIdToken().then(idToken => {
-            return new Promise<Map<string, any>>((resolve, reject) => {
-
-                const reqData = {
-                    catId: catId
-                }
-
-                this.http.post(`${this.reqUrl}/word/search-data`, reqData, {
-                    headers: new HttpHeaders().set('Authorization', idToken)
-                }).subscribe(data => {
-
-                    const resData = data as ResponseDate;
-
-                    if (resData.res) {
-                        resolve(resData.data as Map<string, any>);
                     } else {
                         const msg: string = resData.code + ": " + resData.msg;
                         reject(msg);

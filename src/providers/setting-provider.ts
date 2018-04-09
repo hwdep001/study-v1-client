@@ -28,7 +28,7 @@ export class SettingProvider {
                     uid: this._auth.uid
                 }
 
-                this.http.post(`${this.reqUrl}/setting/word/sub/list`, reqData, {
+                this.http.post(`${this.reqUrl}/setting/word-mng/sub-cat/list`, reqData, {
                     headers: new HttpHeaders().set('Authorization', idToken)
                 }).subscribe(data => {
 
@@ -59,7 +59,7 @@ export class SettingProvider {
                     catId: catId
                 }
 
-                this.http.post(`${this.reqUrl}/setting/word/level/reset`, reqData, {
+                this.http.post(`${this.reqUrl}/setting/word-mng/level/reset`, reqData, {
                     headers: new HttpHeaders().set('Authorization', idToken)
                 }).subscribe(data => {
 

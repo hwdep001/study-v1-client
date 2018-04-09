@@ -25,6 +25,7 @@ export class CatProvider {
       return new Promise<Array<Cat>>((resolve, reject) => {
 
         const reqData = {
+          uid: this._auth.uid,
           subId: subId
         }
 
