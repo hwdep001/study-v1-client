@@ -50,13 +50,13 @@ export class SettingProvider {
         });
     }
 
-    resetLevelByCat(catId: number): Promise<any> {
+    resetLevelByLecIds(lecIds: Array<number>): Promise<any> {
         return this._auth.getIdToken().then(idToken => {
             return new Promise<any>((resolve, reject) => {
 
                 const reqData = {
                     uid: this._auth.uid,
-                    catId: catId
+                    lecIds: lecIds
                 }
 
                 this.http.post(`${this.reqUrl}/setting/word-mng/level/reset`, reqData, {

@@ -14,8 +14,8 @@
         </ion-list-header>
         <ion-item class="iitem" *ngFor="let rc of rsc.roleCats">
             <ion-label>{{rc.name}}</ion-label>
-            <button ion-button item-right color="danger" (click)="resetLevel(rc.id)">
-                Reset
+            <button ion-button item-right color="danger" (click)="moveLevelResetPage(rc.id)">
+                레벨 초기화
             </button>
         </ion-item>
     </ion-list>

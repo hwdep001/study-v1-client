@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only (click)="closeModal()">
+                <ion-icon name="md-arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>단어 레벨 초기화</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="danger" (click)="resetLevel()" [disabled]="isResetBtn == false">
+                <ion-icon name="md-checkmark"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="icontent" scroll=false>
+    <ion-item class="ilist-item cb-all">
+        <ion-label>All</ion-label>
+        <ion-checkbox [(ngModel)]="cbA" (click)="initCheckbox(cbA)"></ion-checkbox>
+    </ion-item>
+    <ion-item class="ilist-item" *ngFor="let lec of lecs; let i = index">
+        <ion-label>{{lec.name}}</ion-label>
+        <ion-checkbox [(ngModel)]="cbs[i]" (click)="checkCb(cbs[i])" (ionChange)="checkStartBtn()"></ion-checkbox>
+    </ion-item>
+</ion-content>

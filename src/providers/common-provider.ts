@@ -26,7 +26,7 @@ export class CommonProvider {
   getLoader(spinner: string, content: string, duration?: number, dismissOnPageChange?: boolean): Loading {
     spinner = spinner ? spinner : "bubbles";
     content = content ? content : "Loading...";
-    duration = duration ? duration : 15000;
+    duration = duration ? duration : 30000;
     dismissOnPageChange = dismissOnPageChange == true ? true : false;
     
     return this.loadingCtrl.create({

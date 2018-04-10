@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 import { CommonProvider } from './../../../providers/common-provider';
 import { SettingProvider } from './../../../providers/setting-provider';
+import { SubProvider } from './../../../providers/sub-provider';
+import { LecProvider } from './../../../providers/lec-provider';
 
 import { RoleSubCat } from './../../../models/RoleSubCat';
+
+import { LevelReset } from './../level-reset/level-reset';
 
 @Component({
     selector: 'page-wordMng',
@@ -13,8 +18,11 @@ export class WordMngPage {
     rscs: Array<RoleSubCat>;
 
     constructor(
+        private modalCtrl: ModalController,
         private _cmn: CommonProvider,
-        private _setting: SettingProvider
+        private _setting: SettingProvider,
+        private _sub: SubProvider,
+        private _lec: LecProvider
     ) {
         this.initData();
     }
@@ -29,22 +37,13 @@ export class WordMngPage {
         });
     }
 
-    resetLevel(catId: number): void {
-        this._cmn.Alert.confirm("단어 레벨을 초기화하시겠습니까?").then(yes => {
+    moveLevelResetPage(catId: number): void {
+        const params = {
+            activeName: this._sub.getActiveName("setting"),
+            catId: catId
+        }
 
-            const loader = this._cmn.getLoader(null, null);
-            loader.present();
-
-            this._setting.resetLevelByCat(catId)
-                .then(() => {
-                    loader.dismiss();
-                    this._cmn.Toast.present("top", "단어 레벨 초기화 성공", "toast-success");
-                })
-                .catch(err => {
-                    loader.dismiss();
-                    this._cmn.Toast.present("top", "단어 레벨 초기화 실패", "toast-fail");
-                });
-
-        }).catch(() => null);
+        this.modalCtrl.create(LevelReset, params).present();
     }
+
 }

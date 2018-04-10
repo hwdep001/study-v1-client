@@ -39,6 +39,7 @@ import { EwListPage } from './../pages/word/ew-list/ew-list';
 import { SettingTabPage } from './../pages/setting/setting-tab';
 import { InfoPage } from './../pages/setting/info/info';
 import { WordMngPage } from './../pages/setting/word-mng/word-mng';
+import { LevelReset } from './../pages/setting/level-reset/level-reset';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { WordMngPage } from './../pages/setting/word-mng/word-mng';
         EwListPage,
         SettingTabPage,
         InfoPage,
-        WordMngPage
+        WordMngPage,
+        LevelReset
     ],
     imports: [
         BrowserModule,
@@ -82,7 +84,8 @@ import { WordMngPage } from './../pages/setting/word-mng/word-mng';
         EwListPage,
         SettingTabPage,
         InfoPage,
-        WordMngPage
+        WordMngPage,
+        LevelReset
     ],
     providers: [
         StatusBar,

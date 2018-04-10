@@ -1,9 +1,11 @@
-import { CommonProvider } from './../../../providers/common-provider';
-import { WordProvider } from './../../../providers/word-provider';
-import { WordSearchCondition } from './../../../models/WordSearchCondition';
-import { Word } from './../../../models/Word';
 import { Component, ViewChild } from '@angular/core';
 import { NavParams, Content } from 'ionic-angular';
+
+import { CommonProvider } from './../../../providers/common-provider';
+import { WordProvider } from './../../../providers/word-provider';
+
+import { WordSearchCondition } from './../../../models/WordSearchCondition';
+import { Word } from './../../../models/Word';
 
 @Component({
     selector: 'page-spsllwList',
