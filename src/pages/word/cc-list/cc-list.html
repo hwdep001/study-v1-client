@@ -45,9 +45,9 @@
                     <ion-card-content align-self-center>
                         <ion-label>
                             {{word.col03}}
-                            <ng-container *ngIf="word.col04 != ''">, </ng-container>{{word.col04}}
-                            <ng-container *ngIf="word.col05 != ''">, </ng-container>{{word.col05}}
-                            <ng-container *ngIf="word.col06 != ''">, </ng-container>{{word.col06}}
+                            <ng-container *ngIf="word.col04 != null">, </ng-container>{{word.col04}}
+                            <ng-container *ngIf="word.col05 != null">, </ng-container>{{word.col05}}
+                            <ng-container *ngIf="word.col06 != null">, </ng-container>{{word.col06}}
                         </ion-label>
                     </ion-card-content>
                 </ion-row>
@@ -60,17 +60,17 @@
 
                 <ion-row class="icard-ex">
                     <ion-card-content align-self-center>
-                        <ng-container *ngIf="word.col11 != ''">
-                            <ion-label>
-                                <img src="assets/imgs/icon_exam.png" />{{word.col11}}</ion-label>
+                        <ng-container *ngIf="word.col11 != null">
+                            <img src="assets/imgs/icon_exam.png" />
+                            <ion-label>{{word.col11}}</ion-label>
                         </ng-container>
-                        <ng-container *ngIf="word.col15 != ''">
-                            <ion-label>
-                                <img src="assets/imgs/icon_synonym.png" />{{word.col15}}</ion-label>
+                        <ng-container *ngIf="word.col15 != null">
+                            <img src="assets/imgs/icon_synonym.png" />
+                            <ion-label>{{word.col15}}</ion-label>
                         </ng-container>
-                        <ng-container *ngIf="word.col16 != ''">
-                            <ion-label>
-                                <img src="assets/imgs/icon_antonym.png" />{{word.col16}}</ion-label>
+                        <ng-container *ngIf="word.col16 != null">
+                            <img src="assets/imgs/icon_antonym.png" />
+                            <ion-label>{{word.col16}}</ion-label>
                         </ng-container>
                     </ion-card-content>
                 </ion-row>

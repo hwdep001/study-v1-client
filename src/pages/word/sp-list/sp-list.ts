@@ -8,10 +8,10 @@ import { SearchCondition } from './../../../models/sub/SearchCondition';
 import { Word } from './../../../models/Word';
 
 @Component({
-    selector: 'page-kwList',
-    templateUrl: 'kw-list.html'
+    selector: 'page-spList',
+    templateUrl: 'sp-list.html'
 })
-export class KwListPage {
+export class SpListPage {
     @ViewChild(Content) content: Content;
 
     words: Array<Word>;
@@ -47,12 +47,17 @@ export class KwListPage {
 
         this._word.getWordsBySearch(this.sc)
             .then(words_ => {
+                let ox: Array<string>;
                 for (let i = 0; i < words_.length; i++) {
                     words_[i].flag1 = false;
-                    words_[i].flag2 = false;
+                    const word = words_[i];
+                    word.col06 = word.col02;
+                    ox = [word.col02, word.col03];
+                    ox.shuffleArray();
+                    word.col02 = ox[0];
+                    word.col03 = ox[1];
 
-                    words_[i].col15 = this.createMeString(words_[i]);
-                    words_[i].col16 = this.createExString(words_[i]);
+                    word.col04 = word.col04 == null ? word.col06 : word.col04;
                 }
                 this.words = words_;
                 loader.dismiss();
@@ -62,33 +67,6 @@ export class KwListPage {
                 console.log(err);
                 alert(err);
             });
-    }
-
-    private createMeString(word: Word): string {
-        let result: string = null;
-
-        (word.col02 == null) ? null : (result = word.col02);
-        (word.col03 == null) ? null : (result += "\n" + word.col03);
-        (word.col04 == null) ? null : (result += "\n" + word.col04);
-        (word.col05 == null) ? null : (result += "\n" + word.col05);
-        (word.col06 == null) ? null : (result += "\n" + word.col06);
-        (word.col07 == null) ? null : (result += "\n" + word.col07);
-        (word.col08 == null) ? null : (result += "\n" + word.col08);
-
-        return result;
-    }
-
-    private createExString(word: Word): string {
-        let result: string = null;
-
-        (word.col09 == null) ? null : (result = word.col09);
-        (word.col10 == null) ? null : (result += "\n" + word.col10);
-        (word.col11 == null) ? null : (result += "\n" + word.col11);
-        (word.col12 == null) ? null : (result += "\n" + word.col12);
-        (word.col13 == null) ? null : (result += "\n" + word.col13);
-        (word.col14 == null) ? null : (result += "\n" + word.col14);
-
-        return result;
     }
 
     clickThumbs(word: Word, thumbCode: number): void {
@@ -105,25 +83,35 @@ export class KwListPage {
         }
     }
 
-    // requestModification(word: Word): void {
+    clickAnswer(seletedAnswer: string, word: Word): void {
+        word.col07 = (seletedAnswer == word.col06) ? "an-t" : "an-f";
+        word.flag1 = true;
+    }
+
+    //   requestModification(word: Word): void {
     //     const params = {
-    //         activeName: CommonUtil.getActiveName(this.sc.sub.id),
-    //         subId: this.sc.sub.id,
-    //         catId: this.sc.cat.id,
-    //         word: word
+    //       activeName: CommonUtil.getActiveName(this.sc.sub.id), 
+    //       subId: this.sc.sub.id,
+    //       catId: this.sc.cat.id,
+    //       word: word
     //     }
 
     //     this.navCtrl.push(RequestPage, params);
-    // }
+    //   }
 
     shuffleQue(): void {
         const loader = this._cmn.getLoader(null, null);
         loader.present();
 
         let words_: Array<Word> = this.words.shuffleArray();
+        let ox: Array<string>;
 
         words_.forEach(word => {
             word.flag1 = false;
+            ox = [word.col02, word.col03];
+            ox.shuffleArray();
+            word.col02 = ox[0];
+            word.col03 = ox[1];
         });
 
         this.words = words_;

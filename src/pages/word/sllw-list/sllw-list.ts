@@ -8,10 +8,10 @@ import { SearchCondition } from './../../../models/sub/SearchCondition';
 import { Word } from './../../../models/Word';
 
 @Component({
-    selector: 'page-spsllwList',
-    templateUrl: 'spsllw-list.html'
+    selector: 'page-sllwList',
+    templateUrl: 'sllw-list.html'
 })
-export class SpsllwListPage {
+export class SllwListPage {
     @ViewChild(Content) content: Content;
 
     words: Array<Word>;
@@ -51,11 +51,13 @@ export class SpsllwListPage {
                 for (let i = 0; i < words_.length; i++) {
                     words_[i].flag1 = false;
                     const word = words_[i];
-                    word.col06 = (word.col05 == "1") ? word.col02 : word.col03;
-                    ox = [word.col02, word.col03];
+                    word.col06 = word.col01;
+                    ox = [word.col01, word.col02];
                     ox.shuffleArray();
-                    word.col02 = ox[0];
-                    word.col03 = ox[1];
+                    word.col01 = ox[0];
+                    word.col02 = ox[1];
+
+                    word.col03 = word.col03 == null ? word.col06 : word.col03;
                 }
                 this.words = words_;
                 loader.dismiss();
@@ -68,18 +70,21 @@ export class SpsllwListPage {
     }
 
     clickThumbs(word: Word, thumbCode: number): void {
-        const level: number = thumbCode + (word.levelId == undefined ? 0 : word.levelId);
+        const preLevel: number = (word.levelId == undefined ? 0 : word.levelId);
+        const level: number = thumbCode + preLevel;
 
         if (level > 2 || level < -2) {
             return;
         } else {
             this._word.updateWordLevel(word.id, level)
-                .then(() => word.levelId = level);
+                .then()
+                .catch(() => word.levelId = preLevel);
+            word.levelId = level;
         }
     }
 
-    clickAnswer(seletedanswer: string, word: Word): void {
-        word.col07 = (seletedanswer == word.col06) ? "an-t" : "an-f";
+    clickAnswer(seletedAnswer: string, word: Word): void {
+        word.col07 = (seletedAnswer == word.col06) ? "an-t" : "an-f";
         word.flag1 = true;
     }
 
@@ -103,11 +108,10 @@ export class SpsllwListPage {
 
         words_.forEach(word => {
             word.flag1 = false;
-                word.col06 = (word.col05 == "1") ? word.col02 : word.col03;
-                ox = [word.col02, word.col03];
-                ox.shuffleArray();
-                word.col02 = ox[0];
-                word.col03 = ox[1];
+            ox = [word.col01, word.col02];
+            ox.shuffleArray();
+            word.col01 = ox[0];
+            word.col02 = ox[1];
         });
 
         this.words = words_;

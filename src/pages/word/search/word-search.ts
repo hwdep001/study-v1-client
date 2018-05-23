@@ -12,7 +12,8 @@ import { Cat } from './../../../models/Cat';
 import { Lec } from './../../../models/Lec';
 import { SearchCondition } from './../../../models/sub/SearchCondition';
 
-import { SpsllwListPage } from './../spsllw-list/spsllw-list';
+import { SpListPage } from './../sp-list/sp-list';
+import { SllwListPage } from './../sllw-list/sllw-list';
 import { KwListPage } from './../kw-list/kw-list';
 import { CcListPage } from './../cc-list/cc-list';
 import { C4ListPage } from './../c4-list/c4-list';
@@ -150,9 +151,11 @@ export class WordSearchPage {
 
         switch (this.sub.id) {
             case "sp":
+                this.navCtrl.push(SpListPage, params);
+                break;
             case "sl":
             case "lw":
-                this.navCtrl.push(SpsllwListPage, params);
+                this.navCtrl.push(SllwListPage, params);
                 break;
             case "kw":
                 this.navCtrl.push(KwListPage, params);

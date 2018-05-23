@@ -31,7 +31,8 @@ import { HomePage } from './../pages/home/home';
 import { CatListPage } from './../pages/cat-list/cat-list';
 import { LecListPage } from './../pages/lec-list/lec-list';
 import { WordSearchPage } from './../pages/word/search/word-search';
-import { SpsllwListPage } from './../pages/word/spsllw-list/spsllw-list';
+import { SpListPage } from './../pages/word/sp-list/sp-list';
+import { SllwListPage } from './../pages/word/sllw-list/sllw-list';
 import { KwListPage } from './../pages/word/kw-list/kw-list';
 import { CcListPage } from './../pages/word/cc-list/cc-list';
 import { C4ListPage } from './../pages/word/c4-list/c4-list';
@@ -50,7 +51,8 @@ import { LevelReset } from './../pages/setting/level-reset/level-reset';
         CatListPage,
         LecListPage,
         WordSearchPage,
-        SpsllwListPage,
+        SpListPage,
+        SllwListPage,
         KwListPage,
         CcListPage,
         C4ListPage,
@@ -77,7 +79,8 @@ import { LevelReset } from './../pages/setting/level-reset/level-reset';
         CatListPage,
         LecListPage,
         WordSearchPage,
-        SpsllwListPage,
+        SpListPage,
+        SllwListPage,
         KwListPage,
         CcListPage,
         C4ListPage,
