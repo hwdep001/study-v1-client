@@ -4,9 +4,9 @@ class RoleCat {
     isChecked: boolean;
 }
 
-export class RoleSubCat {
+export class RoleSub7CatList {
     id: string;
     name: string;
     isChecked: boolean;
-    roleCats: Array<RoleCat>;
+    roleCatList: Array<RoleCat>;
 }

@@ -6,7 +6,7 @@ import { environment } from './../environments/environment';
 import { AuthProvider } from './auth-provider';
 
 import { ResponseDate } from './../models/ResponseData';
-import { RoleSubCat } from './../models/sub/RoleSubCat';
+import { RoleSub7CatList } from './../models/sub/RoleSub7CatList';
 
 @Injectable()
 export class SettingProvider {
@@ -20,9 +20,9 @@ export class SettingProvider {
         this.reqUrl = environment.requestUrl;
     }
 
-    getRoleSubCatListByUid(): Promise<Array<RoleSubCat>> {
+    getRoleSubCatListByUid(): Promise<Array<RoleSub7CatList>> {
         return this._auth.getIdToken().then(idToken => {
-            return new Promise<Array<RoleSubCat>>((resolve, reject) => {
+            return new Promise<Array<RoleSub7CatList>>((resolve, reject) => {
 
                 const reqData = {
                     uid: this._auth.uid
@@ -35,7 +35,7 @@ export class SettingProvider {
                     const resData = data as ResponseDate;
 
                     if (resData.res) {
-                        resolve(resData.data as Array<RoleSubCat>);
+                        resolve(resData.data as Array<RoleSub7CatList>);
                     } else {
                         const msg: string = resData.code + ": " + resData.msg;
                         console.log(msg);

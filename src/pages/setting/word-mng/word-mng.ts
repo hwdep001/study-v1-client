@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 
-import { CommonProvider } from './../../../providers/common-provider';
 import { SettingProvider } from './../../../providers/setting-provider';
 import { SubProvider } from './../../../providers/sub-provider';
-import { LecProvider } from './../../../providers/lec-provider';
 
-import { RoleSubCat } from './../../../models/sub/RoleSubCat';
+import { RoleSub7CatList } from './../../../models/sub/RoleSub7CatList';
 
 import { LevelReset } from './../level-reset/level-reset';
 
@@ -15,14 +13,12 @@ import { LevelReset } from './../level-reset/level-reset';
     templateUrl: 'word-mng.html'
 })
 export class WordMngPage {
-    rscs: Array<RoleSubCat>;
+    rscs: Array<RoleSub7CatList>;
 
     constructor(
         private modalCtrl: ModalController,
-        private _cmn: CommonProvider,
         private _setting: SettingProvider,
-        private _sub: SubProvider,
-        private _lec: LecProvider
+        private _sub: SubProvider
     ) {
         this.initData();
     }

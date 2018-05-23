@@ -12,7 +12,7 @@
         <ion-list-header class="iheader" no-lines>
             <ion-label>{{rsc.name}}</ion-label>
         </ion-list-header>
-        <ion-item class="iitem" *ngFor="let rc of rsc.roleCats">
+        <ion-item class="iitem" *ngFor="let rc of rsc.roleCatList">
             <ion-label>{{rc.name}}</ion-label>
             <button ion-button item-right color="danger" (click)="moveLevelResetPage(rc.id)">
                 레벨 초기화
