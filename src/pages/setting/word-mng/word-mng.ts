@@ -6,7 +6,7 @@ import { SettingProvider } from './../../../providers/setting-provider';
 import { SubProvider } from './../../../providers/sub-provider';
 import { LecProvider } from './../../../providers/lec-provider';
 
-import { RoleSubCat } from './../../../models/RoleSubCat';
+import { RoleSubCat } from './../../../models/sub/RoleSubCat';
 
 import { LevelReset } from './../level-reset/level-reset';
 

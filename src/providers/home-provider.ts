@@ -6,7 +6,7 @@ import { environment } from './../environments/environment';
 import { AuthProvider } from './auth-provider';
 
 import { ResponseDate } from './../models/ResponseData';
-import { WordCount } from './../models/WordCount';
+import { WordCount } from './../models/sub/WordCount';
 
 @Injectable()
 export class HomeProvider {

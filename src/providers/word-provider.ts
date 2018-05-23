@@ -6,7 +6,7 @@ import { environment } from './../environments/environment';
 import { AuthProvider } from './auth-provider';
 
 import { ResponseDate } from './../models/ResponseData';
-import { WordSearchCondition } from './../models/WordSearchCondition';
+import { SearchCondition } from './../models/sub/SearchCondition';
 import { Word } from './../models/Word';
 import { Level } from './../models/Level';
 
@@ -22,9 +22,9 @@ export class WordProvider {
         this.reqUrl = environment.requestUrl;
     }
 
-    getWordSearchCondition(catId: number): Promise<Map<string, any>> {
+    getWordSearchCondition(catId: number): Promise<SearchCondition> {
         return this._auth.getIdToken().then(idToken => {
-            return new Promise<Map<string, any>>((resolve, reject) => {
+            return new Promise<SearchCondition>((resolve, reject) => {
 
                 const reqData = {
                     catId: catId
@@ -37,7 +37,7 @@ export class WordProvider {
                     const resData = data as ResponseDate;
 
                     if (resData.res) {
-                        resolve(resData.data as Map<string, any>);
+                        resolve(resData.data as SearchCondition);
                     } else {
                         const msg: string = resData.code + ": " + resData.msg;
                         reject(msg);
@@ -50,11 +50,11 @@ export class WordProvider {
         });
     }
 
-    getWordsBySearch(wsc: WordSearchCondition): Promise<Array<Word>> {
+    getWordsBySearch(sc: SearchCondition): Promise<Array<Word>> {
         return this._auth.getIdToken().then(idToken => {
             return new Promise<any>((resolve, reject) => {
 
-                const reqData = wsc;
+                const reqData = sc;
 
                 this.http.post(`${this.reqUrl}/word/search`, reqData, {
                     headers: new HttpHeaders().set('Authorization', idToken)
@@ -105,19 +105,5 @@ export class WordProvider {
             });
         });
     }
-
-    getLevels(): Array<Level> {
-        let levels = new Array<Level>();
-        // levels.push({id: 2, name: "Very easy"});
-        // levels.push({id: 1, name: "Easy"});
-        // levels.push({id: 0, name: "Normal"});
-        // levels.push({id: -1, name: "Difficult"});
-        // levels.push({id: -2, name: "Very difficult"});
-        levels.push({id: 2, name: "2"});
-        levels.push({id: 1, name: "1"});
-        levels.push({id: 0, name: "0"});
-        levels.push({id: -1, name: "-1"});
-        levels.push({id: -2, name: "-2"});
-        return levels;
-    }
+    
 }

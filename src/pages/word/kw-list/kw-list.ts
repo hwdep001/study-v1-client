@@ -4,7 +4,7 @@ import { NavParams, Content } from 'ionic-angular';
 import { CommonProvider } from './../../../providers/common-provider';
 import { WordProvider } from './../../../providers/word-provider';
 
-import { WordSearchCondition } from './../../../models/WordSearchCondition';
+import { SearchCondition } from './../../../models/sub/SearchCondition';
 import { Word } from './../../../models/Word';
 
 @Component({
@@ -15,7 +15,7 @@ export class KwListPage {
     @ViewChild(Content) content: Content;
 
     words: Array<Word>;
-    wsc: WordSearchCondition;
+    sc: SearchCondition;
     title: string;
 
     constructor(
@@ -27,17 +27,17 @@ export class KwListPage {
     }
 
     initData(): void {
-        this.wsc = this.param.get("wsc");
+        this.sc = this.param.get("sc");
 
         this.setTitle();
         this.getWords();
     }
 
     setTitle(): void {
-        if (this.wsc.randomed) {
-            this.title = this.wsc.cat.name;
+        if (this.sc.randomed) {
+            this.title = this.sc.cat.name;
         } else {
-            this.title = this.wsc.lec.name;
+            this.title = this.sc.lec.name;
         }
     }
 
@@ -45,7 +45,7 @@ export class KwListPage {
         const loader = this._cmn.getLoader(null, null);
         loader.present();
 
-        this._word.getWordsBySearch(this.wsc)
+        this._word.getWordsBySearch(this.sc)
             .then(words_ => {
                 for (let i = 0; i < words_.length; i++) {
                     words_[i].flag1 = false;
@@ -107,9 +107,9 @@ export class KwListPage {
 
     // requestModification(word: Word): void {
     //     const params = {
-    //         activeName: CommonUtil.getActiveName(this.wsc.sub.id),
-    //         subId: this.wsc.sub.id,
-    //         catId: this.wsc.cat.id,
+    //         activeName: CommonUtil.getActiveName(this.sc.sub.id),
+    //         subId: this.sc.sub.id,
+    //         catId: this.sc.cat.id,
     //         word: word
     //     }
 

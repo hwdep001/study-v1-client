@@ -6,7 +6,7 @@ import { environment } from './../environments/environment';
 import { AuthProvider } from './auth-provider';
 
 import { ResponseDate } from './../models/ResponseData';
-import { RoleSubCat } from './../models/RoleSubCat';
+import { RoleSubCat } from './../models/sub/RoleSubCat';
 
 @Injectable()
 export class SettingProvider {

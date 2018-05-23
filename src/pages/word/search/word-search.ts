@@ -10,7 +10,7 @@ import { Level } from './../../../models/Level';
 import { Sub } from './../../../models/Sub';
 import { Cat } from './../../../models/Cat';
 import { Lec } from './../../../models/Lec';
-import { WordSearchCondition } from './../../../models/WordSearchCondition';
+import { SearchCondition } from './../../../models/sub/SearchCondition';
 
 import { SpsllwListPage } from './../spsllw-list/spsllw-list';
 import { KwListPage } from './../kw-list/kw-list';
@@ -60,7 +60,6 @@ export class WordSearchPage {
 
         this.sub = this.param.get("sub");
         this.cat = this.param.get("cat");
-        this.getLevs();
         this.getWordSearchCondition()
             .then(() => loader.dismiss())
             .catch(err => {
@@ -73,24 +72,20 @@ export class WordSearchPage {
     getWordSearchCondition(): Promise<any> {
         return this._word.getWordSearchCondition(this.cat.id)
             .then(dataMap => {
-                this.lecs = dataMap["lecs"];
+                this.lecs = dataMap["lecList"];
                 this.initCheckbox(false);
                 this.lecRange = { lower: 1, upper: this.lecs.length };
 
-                this.cnts = dataMap["cnts"];
+                this.cnts = dataMap["countList"];
                 this.selectCnt = this.cnts[4];
+
+                this.levs = dataMap["levelList"];
+                let levIds = new Array<number>();
+                this.levs.forEach(lev => {
+                    levIds.push(lev.id);
+                });
+                this.selectLevs = levIds;
             });
-    }
-
-    getLevs(): void {
-        this.selectLevs = new Array<number>();
-
-        this.levs = this._word.getLevels();
-        let levIds = new Array<number>();
-        this.levs.forEach(lev => {
-            levIds.push(lev.id);
-        });
-        this.selectLevs = levIds;
     }
 
     initCheckbox(bl: boolean) {
@@ -147,7 +142,7 @@ export class WordSearchPage {
 
         const params = {
             activeName: this._sub.getActiveName(this.sub.id),
-            wsc: new WordSearchCondition(this.sub,
+            sc: new SearchCondition(this.sub,
                 this.cat, null, this.selectLecs, this.selectLevs, 
                 this.selectCnt, true, this._auth.uid
             )

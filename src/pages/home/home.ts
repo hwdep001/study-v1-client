@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import { SubProvider } from './../../providers/sub-provider';
 import { HomeProvider } from './../../providers/home-provider';
 
-import { WordCount } from './../../models/WordCount';
+import { WordCount } from './../../models/sub/WordCount';
 
 import { CatListPage } from './../cat-list/cat-list';
 
