@@ -36,10 +36,10 @@
                 <ion-row class="icard-body1">
                     <ion-card-content align-self-center>
                         <ion-label class="meaning">
-                            <ng-container *ngIf="word.col02 != ''">{{word.col02}}.</ng-container> {{word.col03}}
+                            <ng-container *ngIf="word.col02 != null">{{word.col02}}.</ng-container> {{word.col03}}
                         </ion-label>
                         <ion-label class="meaning">
-                            <ng-container *ngIf="word.col04 != ''">{{word.col04}}.</ng-container> {{word.col05}}
+                            <ng-container *ngIf="word.col04 != null">{{word.col04}}.</ng-container> {{word.col05}}
                         </ion-label>
                     </ion-card-content>
                 </ion-row>
