@@ -8,7 +8,6 @@ import { AuthProvider } from './auth-provider';
 import { ResponseDate } from './../models/ResponseData';
 import { SearchCondition } from './../models/sub/SearchCondition';
 import { Word } from './../models/Word';
-import { Level } from './../models/Level';
 
 @Injectable()
 export class WordProvider {
