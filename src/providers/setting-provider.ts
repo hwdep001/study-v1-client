@@ -54,10 +54,7 @@ export class SettingProvider {
         return this._auth.getIdToken().then(idToken => {
             return new Promise<any>((resolve, reject) => {
 
-                const reqData = {
-                    uid: this._auth.uid,
-                    lecIds: lecIds
-                }
+                const reqData = lecIds;
 
                 this.http.post(`${this.reqUrl}/setting/word-mng/level/reset`, reqData, {
                     headers: new HttpHeaders().set('Authorization', idToken)
