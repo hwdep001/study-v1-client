@@ -78,7 +78,7 @@ export class WordSearchPage {
                 this.lecRange = { lower: 1, upper: this.lecs.length };
 
                 this.cnts = dataMap["countList"];
-                this.selectCnt = this.cnts[4];
+                this.selectCnt = this.cnts[this.cnts.length-1];
 
                 this.levs = dataMap["levelList"];
                 let levIds = new Array<number>();
