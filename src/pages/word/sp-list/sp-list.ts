@@ -61,6 +61,8 @@ export class SpListPage {
                 }
                 this.words = words_;
                 loader.dismiss();
+
+                this._cmn.Toast.present("bottom", words_.length + " 단어", null);
             })
             .catch(err => {
                 loader.dismiss();
