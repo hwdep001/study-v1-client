@@ -101,24 +101,13 @@ export class SllwListPage {
     //     this.navCtrl.push(RequestPage, params);
     //   }
 
+    orderQue(): void {
+        this.sc.randomed = false;
+        this.getWords();
+    }
+
     shuffleQue(): void {
-        const loader = this._cmn.getLoader(null, null);
-        loader.present();
-
-        let words_: Array<Word> = this.words.shuffleArray();
-        let ox: Array<string>;
-
-        words_.forEach(word => {
-            word.flag1 = false;
-            ox = [word.col01, word.col02];
-            ox.shuffleArray();
-            word.col01 = ox[0];
-            word.col02 = ox[1];
-        });
-
-        this.words = words_;
-        this.content.scrollToTop();
-
-        loader.dismiss();
+        this.sc.randomed = true;
+        this.getWords();
     }
 }

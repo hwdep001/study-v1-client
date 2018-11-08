@@ -1,8 +1,8 @@
 {
   "name": "study-v5-client",
-  "app_id": "93a29c3b",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "pro_id": "93a29c3b"
 }

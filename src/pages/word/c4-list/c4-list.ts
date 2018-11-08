@@ -95,20 +95,14 @@ export class C4ListPage {
         });
     }
 
+    orderQue(): void {
+        this.sc.randomed = false;
+        this.getWords();
+    }
+
     shuffleQue(): void {
-        const loader = this._cmn.getLoader(null, null);
-        loader.present();
-        
-        let words_: Array<Word> = this.words.shuffleArray();
-
-        words_.forEach(word => {
-            word.flag1 = false;
-        });
-
-        this.words = words_;
-        this.content.scrollToTop();
-        
-        loader.dismiss();
+        this.sc.randomed = true;
+        this.getWords();
     }
 
     private presentRadioAlert(message: string, title: string, defaultValue: boolean): Promise<boolean> {
